@@ -4,3 +4,11 @@ spring:
   data:
     mongodb:
       uri: ${MONGODB_URI:mongodb://localhost:27017/authdb}
+jwt:
+  secret: ${JWT_SECRET:dayloom-local-dev-secret-min-32-chars-0123456789}
+  expiration-ms: 86400000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
