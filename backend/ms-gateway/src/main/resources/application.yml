@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: identity
+          uri: http://ms-identity-admin:8081
+          predicates:
+            - Path=/api/auth/**,/api/admin/**
+        - id: habits
+          uri: http://ms-habits:8082
+          predicates:
+            - Path=/api/time/**,/api/food/**
+        - id: planner
+          uri: http://ms-planner:8083
+          predicates:
+            - Path=/api/notes/**,/api/expenses/**

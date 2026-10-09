@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+dist/
+
+# java
+target/
+*.class
+*.jar
+*.war
+
+# env
+.env
+
+# ide
+.idea/
+.vscode/
+*.iml
+
+# os
+.DS_Store
+Thumbs.db
