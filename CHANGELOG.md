@@ -5,6 +5,9 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-10-09
+- dev.ps1 en raiz: levanta mongo + identity, espera health y parte el frontend.
+
 ## [0.4.0] - 2026-10-09
 - frontend: login/registro/home con React Router + AuthContext, api contra gateway.
 - identity: CORS explicito (origenes por CORS_ORIGINS); gateway: globalcors.
