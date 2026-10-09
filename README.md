@@ -23,3 +23,6 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## Versionamiento
+SemVer con formato `<version> - descripcion`. Ver `VERSIONING.md` y `CHANGELOG.md`.
