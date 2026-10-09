@@ -5,6 +5,9 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-09
+- compose: MONGODB_URI por servicio overridible (MONGODB_URI_*DB) para Atlas, default local.
+
 ## [0.2.0] - 2026-10-09
 - ms-identity-admin: registro, login con JWT + BCrypt, GET /api/users/me.
 - Conexion MongoDB por MONGODB_URI (authdb). Rutas con prefijo /api para gateway.

@@ -18,7 +18,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/authdb
+      - MONGODB_URI=${MONGODB_URI_AUTHDB:-mongodb://mongo:27017/authdb}
       - JWT_SECRET=${JWT_SECRET}
       - SERVER_PORT=8081
     depends_on:
@@ -31,7 +31,7 @@ services:
     ports:
       - "8082:8082"
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/habitsdb
+      - MONGODB_URI=${MONGODB_URI_HABITSDB:-mongodb://mongo:27017/habitsdb}
       - JWT_SECRET=${JWT_SECRET}
       - SERVER_PORT=8082
     depends_on:
@@ -44,7 +44,7 @@ services:
     ports:
       - "8083:8083"
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/plannerdb
+      - MONGODB_URI=${MONGODB_URI_PLANNERDB:-mongodb://mongo:27017/plannerdb}
       - JWT_SECRET=${JWT_SECRET}
       - SERVER_PORT=8083
     depends_on:
