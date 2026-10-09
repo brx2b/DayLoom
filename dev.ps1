@@ -21,11 +21,11 @@ if (-not (Test-Path (Join-Path $BACKEND ".env"))) {
   Fail "falta backend/.env (copialo desde backend/.env.example y completa MONGODB_URI/JWT_SECRET)"
 }
 
-# 3. Backend: mongo + ms-identity-admin
+# 3. Backend: mongo + MS disponibles
 Push-Location $BACKEND
 try {
-  if ($Build) { docker compose up -d --build mongo ms-identity-admin }
-  else { docker compose up -d mongo ms-identity-admin }
+  if ($Build) { docker compose up -d --build mongo ms-identity-admin ms-habits }
+  else { docker compose up -d mongo ms-identity-admin ms-habits }
   if ($LASTEXITCODE -ne 0) { Fail "docker compose fallo (puerto 8081 ocupado?)" }
 } finally { Pop-Location }
 

@@ -5,6 +5,10 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-10-09
+- ms-habits: actividades/rutinas/comidas CRUD por fecha, apply-today, frecuentes, GET single, 401 sin token.
+- frontend: paginas Tiempo y Comidas basicas. dev.ps1 incluye habits.
+
 ## [0.4.1] - 2026-10-09
 - dev.ps1 en raiz: levanta mongo + identity, espera health y parte el frontend.
 

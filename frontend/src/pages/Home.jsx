@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext.jsx'
 
 export default function Home() {
@@ -7,6 +8,9 @@ export default function Home() {
     <main className="home">
       <h1>Hoy</h1>
       <p>Hola, {user?.name} ({user?.email}) [{user?.role}]</p>
+      <nav>
+        <Link to="/tiempo">Tiempo</Link> | <Link to="/comidas">Comidas</Link>
+      </nav>
       <p>Aquí irá el resumen del día: tiempo, comidas, notas y gastos.</p>
       <button onClick={logout}>Salir</button>
     </main>

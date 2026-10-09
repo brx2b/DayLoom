@@ -1,23 +1,19 @@
-package com.dayloom.identity.config;
+package com.dayloom.habits.config;
 
-import com.dayloom.identity.security.JwtAuthFilter;
+import com.dayloom.habits.security.JwtAuthFilter;
 import jakarta.servlet.DispatcherType;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
-@EnableMethodSecurity
 public class SecurityConfig {
   private final JwtAuthFilter jwtAuthFilter;
   private final CorsConfigurationSource corsSource;
@@ -36,14 +32,9 @@ public class SecurityConfig {
         .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(a -> a
             .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
-            .requestMatchers("/api/auth/**", "/actuator/health").permitAll()
+            .requestMatchers("/actuator/health").permitAll()
             .anyRequest().authenticated())
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();
-  }
-
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
   }
 }
