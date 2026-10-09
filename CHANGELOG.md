@@ -5,6 +5,11 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-09
+- ms-gateway: JWT global, TailnetFilter bloquea /api/admin/** fuera de 100.64.0.0/10, fail-fast rol ADMIN.
+- ms-identity-admin: CRUD admin (list/get/patch/delete, auditLogs, seed ADMIN_*), fix /error permitAll.
+- compose: ADMIN_EMAIL/PASSWORD passthrough.
+
 ## [0.2.1] - 2026-10-09
 - compose: MONGODB_URI por servicio overridible (MONGODB_URI_*DB) para Atlas, default local.
 

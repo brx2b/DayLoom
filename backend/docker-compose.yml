@@ -20,6 +20,8 @@ services:
     environment:
       - MONGODB_URI=${MONGODB_URI_AUTHDB:-mongodb://mongo:27017/authdb}
       - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
       - SERVER_PORT=8081
     depends_on:
       mongo:
