@@ -1,0 +1,9 @@
+body { font-family: system-ui, sans-serif; margin: 0; background: #111; color: #eee; }
+.auth, .home { max-width: 360px; margin: 10vh auto; padding: 24px; }
+form { display: flex; flex-direction: column; gap: 12px; }
+input, button { padding: 10px; font-size: 1rem; border-radius: 6px; border: 1px solid #444; }
+input { background: #222; color: #eee; }
+button { background: #4f7cff; color: white; border: none; cursor: pointer; }
+button:disabled { opacity: 0.6; }
+.error { color: #ff8080; }
+a { color: #8fb0ff; }

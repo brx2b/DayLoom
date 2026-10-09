@@ -10,6 +10,13 @@ management:
 spring:
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: ${CORS_ORIGINS:http://localhost:5173}
+            allowedMethods: [GET, POST, PATCH, DELETE, OPTIONS]
+            allowedHeaders: [Authorization, Content-Type, X-Forwarded-For]
+            allowCredentials: true
       routes:
         - id: identity
           uri: http://ms-identity-admin:8081
