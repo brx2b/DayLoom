@@ -24,7 +24,7 @@ spring:
         - id: identity
           uri: http://ms-identity-admin:8081
           predicates:
-            - Path=/api/auth/**,/api/admin/**
+            - Path=/api/auth/**,/api/admin/**,/api/users/**
         - id: habits
           uri: http://ms-habits:8082
           predicates:
