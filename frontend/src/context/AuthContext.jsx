@@ -39,6 +39,10 @@ export function AuthProvider({ children }) {
     apply(await authService.login(email, password))
   }, [apply])
 
+  const adminLogin = useCallback(async (email, password) => {
+    apply(await authService.adminLogin(email, password))
+  }, [apply])
+
   const logout = useCallback(() => {
     localStorage.removeItem('token')
     localStorage.removeItem('email')
@@ -48,7 +52,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ ...session, register, login, logout }}>
+    <AuthContext.Provider value={{ ...session, register, login, adminLogin, logout }}>
       {children}
     </AuthContext.Provider>
   )

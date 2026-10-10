@@ -35,12 +35,29 @@ public class AuthService {
   }
 
   public AuthResponse login(LoginRequest req) {
+    User user = checkCredentials(req);
+    if (user.getRole() == Role.ADMIN) {
+      throw new ResponseStatusException(HttpStatus.FORBIDDEN,
+          "cuenta admin: usa el acceso admin desde Tailnet");
+    }
+    return new AuthResponse(jwt.generate(user), user.getEmail(), user.getName(), user.getRole().name());
+  }
+
+  public AuthResponse adminLogin(LoginRequest req) {
+    User user = checkCredentials(req);
+    if (user.getRole() != Role.ADMIN) {
+      throw new ResponseStatusException(HttpStatus.FORBIDDEN, "acceso solo para administradores");
+    }
+    return new AuthResponse(jwt.generate(user), user.getEmail(), user.getName(), user.getRole().name());
+  }
+
+  private User checkCredentials(LoginRequest req) {
     String email = req.email().toLowerCase().trim();
     User user = users.findByEmail(email)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "credenciales invalidas"));
     if (!encoder.matches(req.password(), user.getPasswordHash())) {
       throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "credenciales invalidas");
     }
-    return new AuthResponse(jwt.generate(user), user.getEmail(), user.getName(), user.getRole().name());
+    return user;
   }
 }

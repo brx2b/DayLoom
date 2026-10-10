@@ -8,11 +8,13 @@ import Comidas from './pages/Comidas.jsx'
 import Notas from './pages/Notas.jsx'
 import Gastos from './pages/Gastos.jsx'
 import Admin from './pages/Admin.jsx'
+import AdminLogin from './pages/AdminLogin.jsx'
 
 export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       <Route path="/tiempo" element={<ProtectedRoute><Tiempo /></ProtectedRoute>} />

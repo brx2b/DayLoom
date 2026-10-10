@@ -10,6 +10,11 @@ export async function login(email, password) {
   return data
 }
 
+export async function adminLogin(email, password) {
+  const { data } = await api.post('/api/auth/admin/login', { email, password })
+  return data
+}
+
 export async function me() {
   const { data } = await api.get('/api/users/me')
   return data

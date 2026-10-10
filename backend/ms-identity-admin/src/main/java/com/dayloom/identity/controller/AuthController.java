@@ -31,4 +31,9 @@ public class AuthController {
   public AuthResponse login(@Valid @RequestBody LoginRequest req) {
     return auth.login(req);
   }
+
+  @PostMapping("/admin/login")
+  public AuthResponse adminLogin(@Valid @RequestBody LoginRequest req) {
+    return auth.adminLogin(req);
+  }
 }

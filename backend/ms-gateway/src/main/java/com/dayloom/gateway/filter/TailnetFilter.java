@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-/** Bloquea /api/admin/** fuera de la Tailnet (100.64.0.0/10). Corre antes que el filtro JWT. */
+/** Bloquea /api/admin/** y /api/auth/admin/** fuera de la Tailnet (100.64.0.0/10). Corre antes que el filtro JWT. */
 @Component
 public class TailnetFilter implements GlobalFilter, Ordered {
   @Override
@@ -19,10 +19,14 @@ public class TailnetFilter implements GlobalFilter, Ordered {
     return Ordered.HIGHEST_PRECEDENCE + 1;
   }
 
+  static boolean isAdminPath(String path) {
+    return path.startsWith("/api/admin/") || path.startsWith("/api/auth/admin/");
+  }
+
   @Override
   public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
     String path = exchange.getRequest().getPath().value();
-    if (!path.startsWith("/api/admin/")) {
+    if (!isAdminPath(path)) {
       return chain.filter(exchange);
     }
     String xff = exchange.getRequest().getHeaders().getFirst("X-Forwarded-For");

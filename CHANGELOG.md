@@ -5,6 +5,10 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-10-10
+- admin solo por /api/auth/admin/login; login publico rechaza cuentas ADMIN.
+- gateway exige Tailnet tambien en /api/auth/admin/**. front: pagina /admin/login.
+
 ## [0.7.0] - 2026-10-10
 - frontend: panel admin /admin (listar, editar, eliminar, solo rol ADMIN).
 
