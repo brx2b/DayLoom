@@ -5,6 +5,10 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.10.4] - 2026-10-10
+- gateway: dedupe de headers CORS (doble ACAO bloqueaba al navegador).
+- MS: CORS solo en el borde; errores incluyen message.
+
 ## [0.10.3] - 2026-10-10
 - compose: pasar CORS_ORIGINS a los 4 servicios (el front por 127.0.0.1 daba 403).
 

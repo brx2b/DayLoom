@@ -1,13 +1,13 @@
 server:
   port: 8082
+  error:
+    include-message: always
 spring:
   data:
     mongodb:
       uri: ${MONGODB_URI:mongodb://localhost:27017/habitsdb}
 jwt:
   secret: ${JWT_SECRET:dayloom-local-dev-secret-min-32-chars-0123456789}
-cors:
-  origins: ${CORS_ORIGINS:http://localhost:5173}
 management:
   endpoints:
     web:

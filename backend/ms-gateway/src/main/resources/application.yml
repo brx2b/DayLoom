@@ -13,6 +13,8 @@ management:
 spring:
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials Vary, RETAIN_UNIQUE
       globalcors:
         cors-configurations:
           '[/**]':
