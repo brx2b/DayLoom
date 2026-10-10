@@ -1,17 +1,4 @@
 services:
-  mongo:
-    image: mongo:7
-    container_name: dayloom-mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   ms-identity-admin:
     build: ./ms-identity-admin
     container_name: dayloom-identity
@@ -23,9 +10,6 @@ services:
       - ADMIN_EMAIL=${ADMIN_EMAIL:-}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
       - SERVER_PORT=8081
-    depends_on:
-      mongo:
-        condition: service_healthy
 
   ms-habits:
     build: ./ms-habits
@@ -36,9 +20,6 @@ services:
       - MONGODB_URI=${MONGODB_URI_HABITSDB:-mongodb://mongo:27017/habitsdb}
       - JWT_SECRET=${JWT_SECRET}
       - SERVER_PORT=8082
-    depends_on:
-      mongo:
-        condition: service_healthy
 
   ms-planner:
     build: ./ms-planner
@@ -49,9 +30,6 @@ services:
       - MONGODB_URI=${MONGODB_URI_PLANNERDB:-mongodb://mongo:27017/plannerdb}
       - JWT_SECRET=${JWT_SECRET}
       - SERVER_PORT=8083
-    depends_on:
-      mongo:
-        condition: service_healthy
 
   ms-gateway:
     build: ./ms-gateway
@@ -66,6 +44,3 @@ services:
       - ms-identity-admin
       - ms-habits
       - ms-planner
-
-volumes:
-  mongo-data:

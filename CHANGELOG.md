@@ -5,6 +5,9 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.10.2] - 2026-10-10
+- compose: fuera mongo local (Atlas es la BD), MS sin depends_on.
+
 ## [0.10.1] - 2026-10-10
 - gateway: faltaba ruta /api/users/** (daba 404 via gateway).
 

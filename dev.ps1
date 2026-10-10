@@ -33,8 +33,8 @@ $GW_URL = "http://${BIND}:${GPORT}"
 $API_URL = $GW_URL
 Push-Location $BACKEND
 try {
-  if ($Build) { docker compose up -d --build mongo ms-identity-admin ms-habits ms-planner ms-gateway }
-  else { docker compose up -d mongo ms-identity-admin ms-habits ms-planner ms-gateway }
+  if ($Build) { docker compose up -d --build ms-identity-admin ms-habits ms-planner ms-gateway }
+  else { docker compose up -d ms-identity-admin ms-habits ms-planner ms-gateway }
   if ($LASTEXITCODE -ne 0) { Fail "docker compose fallo (revisa puertos o TAILNET_BIND_IP)" }
 } finally { Pop-Location }
 
