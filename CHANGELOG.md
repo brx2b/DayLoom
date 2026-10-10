@@ -5,6 +5,10 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-10
+- ms-planner: notas CRUD + upcoming?days=, gastos CRUD por mes + summary por categoria.
+- frontend: paginas Notas y Gastos basicas. dev.ps1 incluye planner.
+
 ## [0.5.0] - 2026-10-09
 - ms-habits: actividades/rutinas/comidas CRUD por fecha, apply-today, frecuentes, GET single, 401 sin token.
 - frontend: paginas Tiempo y Comidas basicas. dev.ps1 incluye habits.
