@@ -15,8 +15,8 @@ services:
   ms-identity-admin:
     build: ./ms-identity-admin
     container_name: dayloom-identity
-    ports:
-      - "8081:8081"
+    expose:
+      - "8081"
     environment:
       - MONGODB_URI=${MONGODB_URI_AUTHDB:-mongodb://mongo:27017/authdb}
       - JWT_SECRET=${JWT_SECRET}
@@ -30,8 +30,8 @@ services:
   ms-habits:
     build: ./ms-habits
     container_name: dayloom-habits
-    ports:
-      - "8082:8082"
+    expose:
+      - "8082"
     environment:
       - MONGODB_URI=${MONGODB_URI_HABITSDB:-mongodb://mongo:27017/habitsdb}
       - JWT_SECRET=${JWT_SECRET}
@@ -43,8 +43,8 @@ services:
   ms-planner:
     build: ./ms-planner
     container_name: dayloom-planner
-    ports:
-      - "8083:8083"
+    expose:
+      - "8083"
     environment:
       - MONGODB_URI=${MONGODB_URI_PLANNERDB:-mongodb://mongo:27017/plannerdb}
       - JWT_SECRET=${JWT_SECRET}
@@ -57,9 +57,10 @@ services:
     build: ./ms-gateway
     container_name: dayloom-gateway
     ports:
-      - "8080:8080"
+      - "${TAILNET_BIND_IP:-127.0.0.1}:${GATEWAY_PORT:-8080}:8080"
     environment:
       - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_TAILNET_IPS=${ADMIN_TAILNET_IPS:-100.64.0.0/10}
       - SERVER_PORT=8080
     depends_on:
       - ms-identity-admin

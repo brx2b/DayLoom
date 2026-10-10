@@ -5,6 +5,10 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-10-10
+- compose: MS sin puertos publicados (solo gateway), bind y puerto configurables.
+- gateway: allowlist admin por env (IP/CIDR). dev.ps1 va contra el gateway.
+
 ## [0.8.0] - 2026-10-10
 - admin solo por /api/auth/admin/login; login publico rechaza cuentas ADMIN.
 - gateway exige Tailnet tambien en /api/auth/admin/**. front: pagina /admin/login.

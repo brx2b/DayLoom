@@ -31,4 +31,49 @@ public final class Tailnet {
     }
     return remoteAddress;
   }
+
+  /**
+   * Allowlist separada por comas: IPs sueltas ("100.119.13.70") o CIDR ("100.64.0.0/10").
+   * Solo IPv4.
+   */
+  public static boolean isAllowed(String ip, String allowlist) {
+    if (ip == null || ip.isBlank() || allowlist == null || allowlist.isBlank()) return false;
+    byte[] addr;
+    try {
+      addr = InetAddress.getByName(ip.trim()).getAddress();
+    } catch (Exception e) {
+      return false;
+    }
+    if (addr.length != 4) return false;
+    for (String entry : allowlist.split(",")) {
+      entry = entry.trim();
+      if (entry.isEmpty()) continue;
+      try {
+        if (entry.contains("/")) {
+          String[] parts = entry.split("/", 2);
+          byte[] net = InetAddress.getByName(parts[0].trim()).getAddress();
+          int bits = Integer.parseInt(parts[1].trim());
+          if (net.length == 4 && bits >= 0 && bits <= 32 && inSubnet(addr, net, bits)) return true;
+        } else {
+          byte[] single = InetAddress.getByName(entry).getAddress();
+          if (single.length == 4 && java.util.Arrays.equals(addr, single)) return true;
+        }
+      } catch (Exception ignored) {
+      }
+    }
+    return false;
+  }
+
+  static boolean inSubnet(byte[] addr, byte[] net, int bits) {
+    int full = bits / 8;
+    int rest = bits % 8;
+    for (int i = 0; i < full; i++) {
+      if (addr[i] != net[i]) return false;
+    }
+    if (rest > 0) {
+      int mask = 0xFF << (8 - rest);
+      if (((addr[full] & 0xFF) & mask) != ((net[full] & 0xFF) & mask)) return false;
+    }
+    return true;
+  }
 }

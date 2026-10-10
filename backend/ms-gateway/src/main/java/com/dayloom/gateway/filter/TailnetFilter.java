@@ -1,6 +1,7 @@
 package com.dayloom.gateway.filter;
 
 import java.nio.charset.StandardCharsets;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -11,9 +12,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-/** Bloquea /api/admin/** y /api/auth/admin/** fuera de la Tailnet (100.64.0.0/10). Corre antes que el filtro JWT. */
+/** Bloquea rutas admin fuera del allowlist (env ADMIN_TAILNET_IPS). Corre antes que el filtro JWT. */
 @Component
 public class TailnetFilter implements GlobalFilter, Ordered {
+  private final String allowlist;
+
+  public TailnetFilter(@Value("${admin.tailnet-ips:100.64.0.0/10}") String allowlist) {
+    this.allowlist = allowlist;
+  }
+
   @Override
   public int getOrder() {
     return Ordered.HIGHEST_PRECEDENCE + 1;
@@ -33,7 +40,7 @@ public class TailnetFilter implements GlobalFilter, Ordered {
     String remote = exchange.getRequest().getRemoteAddress() != null
         ? exchange.getRequest().getRemoteAddress().getAddress().getHostAddress()
         : null;
-    if (!Tailnet.isTailnetIp(Tailnet.clientIp(xff, remote))) {
+    if (!Tailnet.isAllowed(Tailnet.clientIp(xff, remote), allowlist)) {
       return forbidden(exchange, "admin solo disponible en Tailnet");
     }
     return chain.filter(exchange);
