@@ -7,6 +7,7 @@ import Tiempo from './pages/Tiempo.jsx'
 import Comidas from './pages/Comidas.jsx'
 import Notas from './pages/Notas.jsx'
 import Gastos from './pages/Gastos.jsx'
+import Admin from './pages/Admin.jsx'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/comidas" element={<ProtectedRoute><Comidas /></ProtectedRoute>} />
       <Route path="/notas" element={<ProtectedRoute><Notas /></ProtectedRoute>} />
       <Route path="/gastos" element={<ProtectedRoute><Gastos /></ProtectedRoute>} />
+      <Route path="/admin" element={<ProtectedRoute adminOnly><Admin /></ProtectedRoute>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

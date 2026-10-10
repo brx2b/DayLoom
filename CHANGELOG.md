@@ -5,6 +5,9 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-10
+- frontend: panel admin /admin (listar, editar, eliminar, solo rol ADMIN).
+
 ## [0.6.0] - 2026-10-10
 - ms-planner: notas CRUD + upcoming?days=, gastos CRUD por mes + summary por categoria.
 - frontend: paginas Notas y Gastos basicas. dev.ps1 incluye planner.
