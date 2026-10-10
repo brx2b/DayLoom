@@ -9,6 +9,7 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - ADMIN_EMAIL=${ADMIN_EMAIL:-}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173}
       - SERVER_PORT=8081
 
   ms-habits:
@@ -19,6 +20,7 @@ services:
     environment:
       - MONGODB_URI=${MONGODB_URI_HABITSDB:-mongodb://mongo:27017/habitsdb}
       - JWT_SECRET=${JWT_SECRET}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173}
       - SERVER_PORT=8082
 
   ms-planner:
@@ -29,6 +31,7 @@ services:
     environment:
       - MONGODB_URI=${MONGODB_URI_PLANNERDB:-mongodb://mongo:27017/plannerdb}
       - JWT_SECRET=${JWT_SECRET}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173}
       - SERVER_PORT=8083
 
   ms-gateway:
@@ -39,6 +42,7 @@ services:
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - ADMIN_TAILNET_IPS=${ADMIN_TAILNET_IPS:-100.64.0.0/10}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173}
       - SERVER_PORT=8080
     depends_on:
       - ms-identity-admin

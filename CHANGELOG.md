@@ -5,6 +5,9 @@ Ejemplo: `1.0.1 - bug fix en backend`, `1.1.0 - nueva funcion listar personas pa
 
 ## [Unreleased]
 
+## [0.10.3] - 2026-10-10
+- compose: pasar CORS_ORIGINS a los 4 servicios (el front por 127.0.0.1 daba 403).
+
 ## [0.10.2] - 2026-10-10
 - compose: fuera mongo local (Atlas es la BD), MS sin depends_on.
 
