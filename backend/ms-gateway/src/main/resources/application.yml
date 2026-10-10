@@ -4,6 +4,7 @@ jwt:
   secret: ${JWT_SECRET:dayloom-local-dev-secret-min-32-chars-0123456789}
 admin:
   tailnet-ips: ${ADMIN_TAILNET_IPS:100.64.0.0/10}
+  tailnet-logins: ${ADMIN_TAILNET_LOGINS:}
 management:
   endpoints:
     web:
